@@ -16,9 +16,35 @@ def inicioSesion(request):
     return render(request, "AppBlog/inicioSesion.html")
 
 
-def crearUsuario(request):
-    return render(request, "AppBlog/nuevoUsuario.html")
+def CrearUsuario(request):
+    if request.method == 'POST':
 
+        form = UsuarioForm(request.POST)
+        if form.is_valid():
+            info = form.cleaned_data
+            nombre = info["nombre"]
+            nombre_usuario = info["nombre_usuario"]
+            email = info["email"]
+            fecha_nacimiento = info["fecha_nacimiento"]
+            contraseña = info["contraseña"]
+            crearusuario = CrearUsuario(nombre=nombre, nombre_usuario=nombre_usuario, email=email, fecha_nacimiento=fecha_nacimiento, contraseña=contraseña)
+            crearusuario.save()
+            return render (request, "AppBlog/principal.html")
+    else:
+        form = UsuarioForm()
+    return render(request, "AppBlog/CrearUsuario.html", {"form":form})       
+
+def buscarUsuario(request):
+    return render(request, "AppBlog/buscarUsuario.html")
+
+def buscar(request):
+    if request.get("nombre"):
+        nombre=request.GET{'nombre'}
+        crearusuario = CrearUsuario.objects.filter(nombre=nombre)
+        return render(request, "AppBlog/resultado.html")
+    nombre=request.GET{'nombre'}
+    respuesta = f"Estoy buscando el usuario:   
+    return httpResponse(respuesta)
 
 def contacto(request):
     return render(request, "AppBlog/contacto.html")
