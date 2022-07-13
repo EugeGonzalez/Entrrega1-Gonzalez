@@ -5,20 +5,20 @@ from AppBlog.models import *
 
 
 def inicio(request):
-    return render (request, "templates/index.html")
+    return render (request, "AppBlog/index.html")
 
 
 def admin(request):
-    return render(request, "templates/nosotros.html")
+    return render(request, "AppBlog/nosotros.html")
 
 
 def inicioSesion(request):
-    return render(request, "templates/inicioSesion.html")
+    return render(request, "AppBlog/inicioSesion.html")
 
 
 def crearUsuario(request):
-    return render(request, "templates/nuevoUsuario.html")
+    return render(request, "AppBlog/nuevoUsuario.html")
 
 
 def contacto(request):
-    return render(request, "templates/contacto.html")
+    return render(request, "AppBlog/contacto.html")
