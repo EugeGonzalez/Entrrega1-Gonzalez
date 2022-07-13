@@ -24,3 +24,9 @@ class CrearUsuario(models.Model):
     email=models.EmailField(max_length=60)
     fecha_nacimiento=models.DateField()
     contraseña= models.CharField(max_length=30)
+
+
+class Contacto(models.Model):
+    nombre=models.CharField(max_length=50)
+    email=models.EmailField(max_length=60)
+    numero_telefono=models.IntegerField()
