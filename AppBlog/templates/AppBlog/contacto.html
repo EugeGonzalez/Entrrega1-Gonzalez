@@ -4,5 +4,13 @@
 {% block titulo %}
 
 <h1 class="fw-bolder">Dejanos tus datos</h1>
+<form action="{% url 'contacto' %}" method="POST"> {% csrf_token %}
+
+    <table>
+        {{  form.as_table}}
+    </table>
+
+    <input type="submit" value="Enviar">
+</form>
 
 {% endblock %}

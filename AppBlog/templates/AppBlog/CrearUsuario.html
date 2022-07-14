@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <form action="{% url 'CrearUsuario' %}" method="POST">
+    <form action="{% url 'CrearUsuario' %}" method="POST"> {% csrf_token %}
         <table>
             {{  form.as_table}}
         </table>
