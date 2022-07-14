@@ -1,18 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultado</title>
-</head>
-<body>
+{% extends "AppBlog/principal.html" %}
+{% load static %}
+
+
+
+{% block contenido_nuevo %}
+
     <h1>Resultado de busqueda</h1>
-    {% for crearusuario in crearusuario %}
-        <p>{{ crearusuario.nombre }}</p>
-        <p>{{ crearusuario.nombre_usuario }}</p>
-        <p>{{ crearusuario.email }}</p>
-        <p>{{ crearusuario.fecha_nacimiento }}</p>
-    {% end for %}
-</body>
-</html>       
+    {% for usuario in crearusuario %}
+        <p>{{ CrearUsuario.nombre }}</p>
+        <p>{{ CrearUsuario.nombre_usuario }}</p>
+        <p>{{ CrearUsuario.email }}</p>
+        <p>{{ CrearUsuario.fecha_nacimiento }}</p>
+    {% endfor %}
+
+
+{% endblock %}      

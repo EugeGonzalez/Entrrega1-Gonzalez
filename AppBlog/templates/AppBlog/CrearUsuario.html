@@ -1,20 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear usuario</title>
-</head>
-<body>
+{% extends "AppBlog/principal.html" %}
+{% load static %}
+
+
+
+
+
+{% block contenido_nuevo %}
+   {% if form.errors %}
+
+    <p>Incorrecto, error en formulario</p>
+
+   {% endif %}
+
+   
 
     <form action="{% url 'CrearUsuario' %}" method="POST"> {% csrf_token %}
         <table>
-            {{  form.as_table}}
+            {{ form.as_table }}
         </table>
 
         <input type="submit" value="Enviar">
     </form>
+
+{% endblock %}
     
-</body>
-</html>
