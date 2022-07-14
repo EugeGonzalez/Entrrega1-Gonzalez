@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from AppBlog.models import *
+from AppBlog.forms import *
 # Create your views here.
 
 
@@ -17,7 +18,7 @@ def inicioSesion(request):
 
 
 def CrearUsuario(request):
-    if request.method == 'POST':
+    if (request.method == 'POST'):
 
         form = UsuarioForm(request.POST)
         if form.is_valid():
@@ -38,12 +39,13 @@ def buscarUsuario(request):
     return render(request, "AppBlog/buscarUsuario.html")
 
 def buscar(request):
-    if request.get("nombre"):
-        nombre=request.GET{'nombre'}
+    if request.GET("nombre"):
+        nombre=request.GET['nombre']
         crearusuario = CrearUsuario.objects.filter(nombre=nombre)
         return render(request, "AppBlog/resultado.html")
-    nombre=request.GET{'nombre'}
-    respuesta = f"Estoy buscando el usuario:   
+    nombre=request.GET['nombre']
+    
+    respuesta = (f"Estoy buscando el usuario: {request.GET['nombre']}")   
     return httpResponse(respuesta)
 
 def contacto(request):
