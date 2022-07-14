@@ -6,11 +6,11 @@
 {% block contenido_nuevo %}
 
     <h1>Resultado de busqueda</h1>
-    {% for usuario in crearusuario %}
-        <p>{{ CrearUsuario.nombre }}</p>
-        <p>{{ CrearUsuario.nombre_usuario }}</p>
-        <p>{{ CrearUsuario.email }}</p>
-        <p>{{ CrearUsuario.fecha_nacimiento }}</p>
+    {% for Contacto in usuario %}
+        <p>{{ Contacto.nombre }}</p>
+        <p>{{ Contacto.nombre_usuario }}</p>
+        <p>{{ Contacto.email }}</p>
+        
     {% endfor %}
 
 
