@@ -26,7 +26,7 @@ def buscarUsuario(request):
 def buscar(request):
     if request.GET.get("nombre"):
         nombre=request.GET.get("nombre")
-        usuario = Contacto.objects.filter(nombre=nombre)
+        usuario = CrearUsuario.objects.filter(nombre=nombre)
         return render(request, "AppBlog/resultado.html", {"usuario":usuario})
     else:
         return render(request, "AppBlog/buscarUsuario.html", {"error": "No se ingreso ningun dato"})
