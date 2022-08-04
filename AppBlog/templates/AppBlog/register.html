@@ -1,0 +1,20 @@
+{% extends "AppBlog/principal.html" %}
+{% load static %}
+
+{% block titulo %}
+
+<h1 class="fw-bolder"> Registrate en Recetario </h1>
+
+{% endblock %}
+
+{% block contenido_nuevo %}
+<h2> {{ mensaje }} </h2>
+
+
+<form action="{% url 'register' %}" method="POST"> {% csrf_token %}
+   
+    {{ form.as_p }}
+    <button type="submit"> Registrarme </button>
+</form>
+
+{% endblock %}

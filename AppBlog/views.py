@@ -3,6 +3,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from AppBlog.forms import *
 from AppBlog.models import *
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 # Create your views here.
 
 
@@ -62,3 +66,37 @@ def Crear_Usuario(request):
         form = UsuarioForm()
     return render(request, "AppBlog/CrearUsuario.html", {"form":form})
     
+
+
+def login_request(request):
+    if request.method=='POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid:
+            usuario=request.POST['username']
+            clave=request.POST['password']
+
+            user=authenticate(username=usuario, password=clave)
+            if user is not None:
+                login(request, user)
+                return render(request, 'AppBlog/index.html', {'form':form, 'mensaje':f"Bienvenido {usuario}"})
+            else:
+                return render(request, 'AppBlog/login.html', {'form':form, 'mensaje':f"Datos incorrectos"})
+        else:
+            return render(request, 'AppBlog/login.html', {'form':form, 'mensaje':f"Formulario incorrecto"})
+    else:
+        form=AuthenticationForm()
+        return render(request,'AppBlog/login.html', {'form':form})
+
+
+
+def register(request):
+    if request.method=='POST':
+
+        form=UserRegisterForm(request.POST)
+        if form.is_valid():
+            username=form.cleaned_data["username"]
+            form.save()
+            return render(request, 'AppBlog/index.html', {'form':form, 'mensaje':f"Usuario creado: {username}"})
+    else:
+        form=UserRegisterForm()
+    return render(request, 'AppBlog/register.html', {'form':form})
