@@ -1,5 +1,6 @@
+from email import message
 from http.client import HTTPResponse
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse
 from AppBlog.forms import *
 from AppBlog.models import *
@@ -100,3 +101,17 @@ def register(request):
     else:
         form=UserRegisterForm()
     return render(request, 'AppBlog/register.html', {'form':form})
+
+def post(request):
+    current_user = get_object_or_404(User, pk=request.user.pk)
+    if request.method =='POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = current_user
+            post.save()
+            message.success(request, 'Post realizado')
+            return render(request, 'AppBlog/index.html', {'form':form})
+    else:
+        form = PostForm()
+    return render(request, 'AppBlog/index.html', {'form':form})
