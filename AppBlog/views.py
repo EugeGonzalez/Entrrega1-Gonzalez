@@ -12,7 +12,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def inicio(request):
+    post = Post.objects.all()
+
+    context = { 'posts': post}
     return render (request, "AppBlog/index.html")
+
+def profile(request):
+    return render(request, 'AppBlog/profile.html')
 
 
 def admin(request):

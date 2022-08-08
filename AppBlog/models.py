@@ -11,6 +11,12 @@ from django.db.models.signals import post_save
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
+
+    def __str__(self):
+        return f'Perfil de {self.user.username}'
+
+
+
 class Admin (models.Model):
     nombre_usuario = models.CharField(max_length=50)
     contraseña  = models.CharField(max_length= 30)
